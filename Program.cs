@@ -8,8 +8,27 @@ namespace CarRepairManagementSystem
 {
     class Program
     {
+        static List<Vehicle> vehicleList = new List<Vehicle>();
+        static List<Inventory> inventoryList = new List<Inventory>();
+        static List<Repair> repairList = new List<Repair>();
+        //public Program()
+        //{
+        //    //vehicleList = new List<Vehicle>();
+        //    //inventoriesList = new List<Inventory>();
+        //    //repairsList = new List<Repair>();
+
+     
+
+        //}
         static void Main(string[] args)
         {
+
+            //Calls method to load Vehicles data
+            LoadInitialVehicleData();
+            LoadInitialInventoryData();
+            LoadInitialRepairData();
+
+
             MainMenu();
 
             Console.ReadKey();
@@ -98,7 +117,8 @@ namespace CarRepairManagementSystem
                 switch (choice)
                 {
                     case 1:
-                        Console.WriteLine("Method to call : List of all vehicles!");
+                        //Console.WriteLine("Method to call : List of all vehicles!");
+                        DisplayListAllVehicles();
                         break;
                     case 2:
                         Console.WriteLine("Method to call : Add new Vehicle!");
@@ -152,7 +172,8 @@ namespace CarRepairManagementSystem
                 switch (choice)
                 {
                     case 1:
-                        Console.WriteLine("Method to call : List of all inventory!");
+                        //Console.WriteLine("Method to call : List of all inventory!");
+                        DisplayListAllInventories();
                         break;
                     case 2:
                         Console.WriteLine("Method to call : Add new inventory!");
@@ -206,7 +227,8 @@ namespace CarRepairManagementSystem
                 switch (choice)
                 {
                     case 1:
-                        Console.WriteLine("Method to call : List of all repair!");
+                        //Console.WriteLine("Method to call : List of all repair!");
+                        DisplayListAllRepairs();
                         break;
                     case 2:
                         Console.WriteLine("Method to call : Add new repair!");
@@ -245,15 +267,113 @@ namespace CarRepairManagementSystem
         }
 
         //Methods to manage vehicles
-        static void ListAllVehicles()
+        static void DisplayListAllVehicles()
         {
-            Console.WriteLine("List of all vehicles....");
+            //Console.WriteLine("List of all vehicles....");
+            var vehicles = from v in vehicleList
+                           select v;
+
+            //print list of all vehicles
+            Console.WriteLine();
+            Console.WriteLine("List of All Vehicles:");
+            Console.WriteLine("\tId\tMake\t\tModel\t\t\tYear\tStatus");
+            Console.WriteLine("\t--\t----\t\t-----\t\t\t----\t------");
+            foreach (Vehicle v in vehicles)
+            {
+                Console.WriteLine($"\t{v.Id}\t{v.Make}\t\t{v.Model}\t\t{v.Year}\t{v.VehicleStatus}");
+            }
+            //Console.WriteLine("------------------------------------");
+
+            Console.WriteLine("\n\n");
+            Console.Write("Press any key to continue. ");
+
         }
 
         static bool AddNewVehicle()
         {
 
             return true;
+        }
+
+
+
+        //Methods to handle Inventory class
+        static void DisplayListAllInventories()
+        {
+            //Console.WriteLine("List of all vehicles....");
+            var inventories = from inv in inventoryList
+                              orderby inv.Id
+                              select inv;
+
+            //print list of all vehicles
+            Console.WriteLine();
+            Console.WriteLine("List of All Inventories:");
+            Console.WriteLine("\tId\tVehicleId\tNumber Of Hand\t\tPrice\t\tCost");
+            Console.WriteLine("\t--\t---------\t--------------\t\t-----\t\t----");
+            foreach (var inv in inventories)
+            {
+                Console.WriteLine($"\t{inv.Id}\t{inv.VehicleId}\t\t{inv.NumberOnHand}\t\t\t{inv.Price}\t\t{inv.Cost}");
+            }
+            //Console.WriteLine("------------------------------------");
+
+            Console.WriteLine("\n\n");
+            Console.Write("Press any key to continue. ");
+
+        }
+
+
+
+
+        //All methods related to Repail class
+        static void DisplayListAllRepairs()
+        {
+            //Console.WriteLine("List of all vehicles....");
+            var repairs = from inv in repairList
+                              orderby inv.Id
+                              select inv;
+
+            //print list of all vehicles
+            Console.WriteLine();
+            Console.WriteLine("List of All Repairs:");
+            Console.WriteLine("\tId\tInventoryId\t\tWhat to Repair");
+            Console.WriteLine("\t--\t----\t\t\t-----");
+            foreach (var rep in repairs)
+            {
+                Console.WriteLine($"\t{rep.Id}\t{rep.InventoryId}\t\t\t{rep.WhatToRepair}");
+            }
+            //Console.WriteLine("------------------------------------");
+
+            Console.WriteLine("\n\n");
+            Console.Write("Press any key to continue. ");
+
+        }
+        static void LoadInitialVehicleData()
+        {
+            //Add records to vehicles list
+            vehicleList.Add(new Vehicle("1", "Toyota", "Series-2021", 2021, VehicleStatus.Used));
+            vehicleList.Add(new Vehicle("2", "Tesla", "Series-2021", 2020, VehicleStatus.New));
+            vehicleList.Add(new Vehicle("3", "Tesla", "Series-2020", 2021, VehicleStatus.New));
+            vehicleList.Add(new Vehicle("4", "BMW", "Series-77", 2019, VehicleStatus.Used));
+            vehicleList.Add(new Vehicle("5", "Hundai", "Series-99", 2020, VehicleStatus.New));
+        }
+
+        static void LoadInitialInventoryData()
+        {
+            inventoryList.Add(new Inventory("101", "1", 1, 26999, 24999));
+            inventoryList.Add(new Inventory("102", "2", 1, 26999, 24999));
+            inventoryList.Add(new Inventory("103", "3", 1, 26999, 24999));
+            inventoryList.Add(new Inventory("104", "4", 1, 26999, 24999));
+            inventoryList.Add(new Inventory("105", "5", 1, 26999, 24999));
+        }
+
+        static void LoadInitialRepairData()
+        {
+            repairList.Add(new Repair("1001", "101", "None"));
+            repairList.Add(new Repair("1002", "102", "None"));
+            repairList.Add(new Repair("1003", "103", "None"));
+            repairList.Add(new Repair("1004", "104", "None"));
+            repairList.Add(new Repair("1005", "105", "None"));
+
         }
     }
 }
