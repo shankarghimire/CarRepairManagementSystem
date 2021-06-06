@@ -123,7 +123,7 @@ namespace CarRepairManagementSystem
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
-                Console.WriteLine("\nInvalid input! Please type a number between 1 to 5 : ");
+                Console.WriteLine("Invalid input! Please type a number between 1 to 5 : ");
                 Console.WriteLine("Press any key to continue!");
                 //Console.log(e);
             }
@@ -177,7 +177,7 @@ namespace CarRepairManagementSystem
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Console.WriteLine("\nInvalid input! Please type a number between 1 to 5 : ");
+                Console.WriteLine("Invalid input! Please type a number between 1 to 5 : ");
                 Console.WriteLine("Press any key to continue!");
                 //Console.log(e);
             }
@@ -191,7 +191,7 @@ namespace CarRepairManagementSystem
             WelcomeMessage();
             Console.WriteLine("You are in : Main Menu > Repair option...");
             Console.WriteLine();
-            //Prints options of Menu 1:
+            //Prints options of Menu:
             Console.WriteLine("Available Options to proceed : ");
             Console.WriteLine("\tPress 1 to view all repairs");
             Console.WriteLine("\tPress 2 to add a new record of repair");
