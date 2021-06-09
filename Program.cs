@@ -99,6 +99,7 @@ namespace CarRepairManagementSystem
         static void MenuForVehicles()
         {
             bool operationResult;
+            int vId;
             Console.Clear();
             WelcomeMessage();
             Console.WriteLine("You are in : Main Menu > Vehicles option...");
@@ -136,10 +137,36 @@ namespace CarRepairManagementSystem
                         Console.WriteLine("Press any key to continue!");
                         break;
                     case 3:
-                        Console.WriteLine("Method to call : Update new Vehicle!");
+                        //Console.WriteLine("Method to call : Update new Vehicle!");
+                        Console.Write("Please enter the vehicle id which you want to update : ");
+                        vId = int.Parse(Console.ReadLine());
+                        operationResult = UpdateVehicle(vId);
+                        if (operationResult)
+                        {
+                            Console.WriteLine("\n\tSuccess! Vehicle has been successfully updated!");
+                            Console.WriteLine(" Press any key to continue!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\tERROR! Something went wrong! Please try again.");
+                            Console.WriteLine(" Press any key to continue!");
+                        }
                         break;
                     case 4:
-                        Console.WriteLine("Method to call : Delete new Vehicle!");
+                        //Console.WriteLine("Method to call : Delete new Vehicle!");
+                        Console.Write("Please enter the vehicle id which you want to delete : ");
+                        vId = int.Parse( Console.ReadLine());
+                        operationResult = DeleteVehicle(vId);
+                        if (operationResult)
+                        {
+                            Console.WriteLine("\n\tSuccess! Vehicle has been successfully deleted!");
+                            Console.WriteLine(" Press any key to continue!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\tERROR! Something went wrong! Please try again.");
+                            Console.WriteLine(" Press any key to continue!");
+                        }
                         break;
                     case 5:
                         MainMenu();
@@ -360,16 +387,81 @@ namespace CarRepairManagementSystem
             return result;
         }
 
-        static bool DeleteVehicle()
+        static bool UpdateVehicle(int id)
         {
 
-            return false;
-        }
+            bool result = false;
+            List<Vehicle> tempVehicleList = new List<Vehicle>();
+            try
+            {
+                bool recordFound = false;
+                foreach (var v in vehicleList)
+                {
+                    if (v.Id == id.ToString())
+                    {
+                        recordFound = true;
 
-        static bool UpdateVehicle()
-        {
+                    }
+                }
+                if (!recordFound)
+                {
+                    throw new Exception("\n\tERROR! Record NOT found!");
+                }
 
-            return false;
+
+                foreach (var v in vehicleList)
+                {
+                    if (v.Id == id.ToString())
+                    {
+                        //tempVehicleList.Add(v);
+                        Console.Write("Enter the vehicle make information : ");
+                        string vMake = Console.ReadLine();
+
+                        Console.Write("\nEnter the vehicle model information : ");
+                        string vModel = Console.ReadLine();
+
+                        Console.Write("\nEnter the vehicle manufactured year : ");
+                        int vYear = int.Parse(Console.ReadLine());
+
+                        Console.Write("\nEnter the vehicle status(0 for Used, 1 for New)  : ");
+                        int vUserInput = int.Parse(Console.ReadLine());
+                        VehicleStatus vStatus;
+                        switch (vUserInput)
+                        {
+                            case 0:
+                                vStatus = VehicleStatus.Used;
+                                break;
+                            case 1:
+                                vStatus = VehicleStatus.New;
+                                break;
+                            default:
+                                throw new Exception("\t ERROR! Inalid option. Please enter either 0 or 1.");
+                                break;
+                        }
+
+                        Vehicle tempVehicle = new Vehicle();
+                        //tempVehicle.Id = vId.ToString();
+                        v.Make = vMake;
+                        v.Model = vModel;
+                        v.Year = vYear;
+                        v.VehicleStatus = vStatus;
+
+                        break;
+                    }
+                }
+                //vehicleList.Clear();
+                //vehicleList = tempVehicleList;
+                result = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                result = false;
+
+            }
+
+    
+            return result;
         }
 
         static bool CheckVehicleId(int id)
@@ -401,6 +493,62 @@ namespace CarRepairManagementSystem
             return result;
 
         }
+
+        static bool DeleteVehicle(int id)
+        {
+            bool result = false;
+            List<Vehicle> tempVehicleList = new List<Vehicle>();
+            try
+            {
+                bool recordFound = false;
+                foreach(var v in vehicleList)
+                {
+                    if(v.Id == id.ToString())
+                    {
+                        recordFound = true;
+
+                    }
+                }
+                if(!recordFound)
+                {
+                    throw new Exception("\n\tERROR! Record NOT found!");
+                }
+                
+
+                foreach (var v in vehicleList)
+                {
+                    if (v.Id != id.ToString())
+                    {
+                        tempVehicleList.Add(v);
+                    }
+                }
+                vehicleList.Clear();
+                vehicleList = tempVehicleList;
+                result = true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                result = false;
+
+            }
+            
+            //Vehicle tempVehicle = new Vehicle();
+            //try
+            //{
+            //    tempVehicle.Id = id.ToString();
+            //    result = vehicleList.Remove(tempVehicle);
+            //    //result = true;
+            //}catch(Exception e)
+            //{
+            //    result = false;
+            //}
+            //result = vehicleList.Remove(tempVehicle);
+            return result;
+        }
+
+
+
         /*###########################################################*/
         //Methods to handle Inventory class
         static void DisplayListAllInventories()
