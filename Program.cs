@@ -11,15 +11,7 @@ namespace CarRepairManagementSystem
         static List<Vehicle> vehicleList = new List<Vehicle>();
         static List<Inventory> inventoryList = new List<Inventory>();
         static List<Repair> repairList = new List<Repair>();
-        //public Program()
-        //{
-        //    //vehicleList = new List<Vehicle>();
-        //    //inventoriesList = new List<Inventory>();
-        //    //repairsList = new List<Repair>();
-
-
-
-        //}
+        
         static void Main(string[] args)
         {
 
@@ -28,7 +20,7 @@ namespace CarRepairManagementSystem
             LoadInitialInventoryData();
             LoadInitialRepairData();
 
-
+            //Method call to print MainMenu
             MainMenu();
 
             Console.ReadKey();
@@ -90,8 +82,6 @@ namespace CarRepairManagementSystem
                 Console.WriteLine("Press any key to continue!");
             }
 
-
-
             Console.ReadKey();
 
             MainMenu();
@@ -128,7 +118,6 @@ namespace CarRepairManagementSystem
                         if (operationResult)
                         {
                             Console.WriteLine("\nSUCCESS! \n\tNew vehicle has been added to the database!");
-
                         }
                         else
                         {
@@ -148,7 +137,7 @@ namespace CarRepairManagementSystem
                         }
                         else
                         {
-                            Console.WriteLine("\nERROR!\n\tSomething went wrong! Please try again.");
+                            Console.WriteLine("\n\tSomething went wrong! Please try again.");
                             Console.WriteLine(" Press any key to continue!");
                         }
                         break;
@@ -164,7 +153,7 @@ namespace CarRepairManagementSystem
                         }
                         else
                         {
-                            Console.WriteLine("\nERROR!\n\tSomething went wrong! Please try again.");
+                            Console.WriteLine("\n\tSomething went wrong! Please try again.");
                             Console.WriteLine(" Press any key to continue!");
                         }
                         break;
@@ -225,7 +214,7 @@ namespace CarRepairManagementSystem
                         }
                         else
                         {
-                            Console.WriteLine("\nERROR!\n\tSomething went wrong! Please try again.");
+                            Console.WriteLine("\n\tSomething went wrong! Please try again.");
                         }
                         Console.WriteLine("Press any key to continue!");
 
@@ -243,7 +232,7 @@ namespace CarRepairManagementSystem
                         }
                         else
                         {
-                            Console.WriteLine("\nERROR!\n\tSomething went wrong! Please try again.");
+                            Console.WriteLine("\n\tSomething went wrong! Please try again.");
                             Console.WriteLine(" Press any key to continue!");
                         }
                         break;
@@ -260,7 +249,7 @@ namespace CarRepairManagementSystem
                         }
                         else
                         {
-                            Console.WriteLine("\nERROR!\n\tSomething went wrong! Please try again.");
+                            Console.WriteLine("\n\tSomething went wrong! Please try again.");
                             Console.WriteLine(" Press any key to continue!");
                         }
                         break;
@@ -272,7 +261,6 @@ namespace CarRepairManagementSystem
                         Console.Write("Press any key to continue.");
                         break;
                 }
-
             }
             catch (Exception e)
             {
@@ -320,7 +308,7 @@ namespace CarRepairManagementSystem
                         }
                         else
                         {
-                            Console.WriteLine("\nERROR!\n\tSomething went wrong! Please try again.");
+                            Console.WriteLine("\n\tSomething went wrong! Please try again.");
                         }
                         Console.WriteLine("Press any key to continue!");
                         break;
@@ -336,7 +324,7 @@ namespace CarRepairManagementSystem
                         }
                         else
                         {
-                            Console.WriteLine("\nERROR!\n\tSomething went wrong! Please try again.");
+                            Console.WriteLine("\n\tSomething went wrong! Please try again.");
                             Console.WriteLine(" Press any key to continue!");
                         }
                         break;
@@ -352,7 +340,7 @@ namespace CarRepairManagementSystem
                         }
                         else
                         {
-                            Console.WriteLine("\nERROR!\n\tSomething went wrong! Please try again.");
+                            Console.WriteLine("\n\tSomething went wrong! Please try again.");
                             Console.WriteLine(" Press any key to continue!");
                         }
                         break;
@@ -441,7 +429,7 @@ namespace CarRepairManagementSystem
                         break;
                     default:
                         throw new Exception("\nERROR! Inalid option. Please enter either 0 or 1.");
-                        break;
+                        //break;
                 }
 
                 Vehicle tempVehicle = new Vehicle();
@@ -538,7 +526,7 @@ namespace CarRepairManagementSystem
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e.Message);
+                Console.WriteLine(e.Message);
                 //Console.WriteLine("Duplicate Ids nowt allowed!");
                 //Console.WriteLine("Please, try again!");
                 result = false;
@@ -726,7 +714,7 @@ namespace CarRepairManagementSystem
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e.Message);
+                Console.WriteLine(e.Message);
                 //Console.WriteLine("Duplicate Ids nowt allowed!");
                 //Console.WriteLine("Please, try again!");
                 result = false;
@@ -880,7 +868,7 @@ namespace CarRepairManagementSystem
             }
             catch (Exception e)
             {
-                //Console.WriteLine(e.Message);
+                Console.WriteLine(e.Message);
                 //Console.WriteLine("Duplicate Ids nowt allowed!");
                 //Console.WriteLine("Please, try again!");
                 result = false;
