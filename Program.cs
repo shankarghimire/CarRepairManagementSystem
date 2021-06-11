@@ -8,6 +8,7 @@ namespace CarRepairManagementSystem
 {
     class Program
     {
+        //Declares List collection object for each class
         static List<Vehicle> vehicleList = new List<Vehicle>();
         static List<Inventory> inventoryList = new List<Inventory>();
         static List<Repair> repairList = new List<Repair>();
@@ -26,6 +27,7 @@ namespace CarRepairManagementSystem
             Console.ReadKey();
         }
 
+        //method to print welcome message
         static void WelcomeMessage()
         {
             Console.WriteLine("###########################################################################");
@@ -34,6 +36,8 @@ namespace CarRepairManagementSystem
             Console.WriteLine("#               Car Repair Management System (CRMS)                       #");
             Console.WriteLine("###########################################################################");
         }
+
+        //Method to print main menu
         static void MainMenu()
         {
             //To clear the previous console
@@ -86,6 +90,8 @@ namespace CarRepairManagementSystem
 
             MainMenu();
         }
+
+        //method to print sub-menu  for Vehicle class
         static void MenuForVehicles()
         {
             bool operationResult;
@@ -109,11 +115,11 @@ namespace CarRepairManagementSystem
                 switch (choice)
                 {
                     case 1:
-                        //Console.WriteLine("Method to call : List of all vehicles!");
+                        //Console.WriteLine("Testing-Method to call : List of all vehicles!");
                         DisplayListAllVehicles();
                         break;
                     case 2:
-                        //Console.WriteLine("Method to call : Add new Vehicle!");
+                        //Console.WriteLine("Testin-Method to call : Add new Vehicle!");
                         operationResult = AddNewVehicle();
                         if (operationResult)
                         {
@@ -126,7 +132,7 @@ namespace CarRepairManagementSystem
                         Console.WriteLine("Press any key to continue!");
                         break;
                     case 3:
-                        //Console.WriteLine("Method to call : Update new Vehicle!");
+                        //Console.WriteLine("Testing-Method to call : Update new Vehicle!");
                         Console.Write("Please enter the vehicle id which you want to update : ");
                         vId = int.Parse(Console.ReadLine());
                         operationResult = UpdateVehicle(vId);
@@ -142,7 +148,7 @@ namespace CarRepairManagementSystem
                         }
                         break;
                     case 4:
-                        //Console.WriteLine("Method to call : Delete new Vehicle!");
+                        //Console.WriteLine("Testing-Method to call : Delete new Vehicle!");
                         Console.Write("Please enter the vehicle id which you want to delete : ");
                         vId = int.Parse(Console.ReadLine());
                         operationResult = DeleteVehicle(vId);
@@ -178,6 +184,8 @@ namespace CarRepairManagementSystem
             MenuForVehicles();
 
         }
+
+        //method to call sub-menu for Inventory class
         static void MenuForInventory()
         {
             int iId;
@@ -201,12 +209,12 @@ namespace CarRepairManagementSystem
                 switch (choice)
                 {
                     case 1:
-                        //Console.WriteLine("Method to call : List of all inventory!");
+                        //Console.WriteLine("Testing- Method to call : List of all inventory!");
                         DisplayListAllInventories();
                         break;
                     case 2:
-                        //Add new Vehicle
-                        //Console.WriteLine("Method to call : Add new inventory!");
+                        //Add new Inventory
+                        //Console.WriteLine("Testing- Method to call : Add new inventory!");
                         operationResult = AddNewInventory();
                         if (operationResult)
                         {
@@ -221,7 +229,7 @@ namespace CarRepairManagementSystem
                         break;
                     case 3:
                         //Update Inventory Info
-                        //Console.WriteLine("Method to call : Update  inventory!");
+                        //Console.WriteLine("Testing-Method to call : Update  inventory!");
                         Console.Write("Please enter the vehicle id which you want to update : ");
                         iId = int.Parse(Console.ReadLine());
                         operationResult = UpdateInventory(iId);
@@ -238,7 +246,7 @@ namespace CarRepairManagementSystem
                         break;
                     case 4:
                         //Delete Inventory Record
-                        //Console.WriteLine("Method to call : Delete  inventory!");
+                        //Console.WriteLine("Testing-Method to call : Delete  inventory!");
                         Console.Write("Please enter the Inventory id which you want to delete : ");
                         iId = int.Parse(Console.ReadLine());
                         operationResult = DeleteInventory(iId);
@@ -273,6 +281,7 @@ namespace CarRepairManagementSystem
             MenuForInventory();
         }
 
+        //method to call sub-menu for Repair class
         static void MenuForRepair()
         {
             Console.Clear();
@@ -296,11 +305,11 @@ namespace CarRepairManagementSystem
                 switch (choice)
                 {
                     case 1:
-                        //Console.WriteLine("Method to call : List of all repair!");
+                        //Console.WriteLine("Testing-Method to call : List of all repair!");
                         DisplayListAllRepairs();
                         break;
                     case 2:
-                        //Console.WriteLine("Method to call : Add new repair!");
+                        //Console.WriteLine("Testing-Method to call : Add new repair!");
                         operationResult = AddNewRepair();
                         if (operationResult)
                         {
@@ -313,7 +322,7 @@ namespace CarRepairManagementSystem
                         Console.WriteLine("Press any key to continue!");
                         break;
                     case 3:
-                        //Console.WriteLine("Method to call : Update  repair!");
+                        //Console.WriteLine("Testing-Method to call : Update  repair!");
                         Console.Write("Please enter the vehicle id which you want to update : ");
                         rId = int.Parse(Console.ReadLine());
                         operationResult = UpdateRepair(rId);
@@ -329,7 +338,7 @@ namespace CarRepairManagementSystem
                         }
                         break;
                     case 4:
-                        //Console.WriteLine("Method to call : Delete  repair!");
+                        //Console.WriteLine("Testing-Method to call : Delete  repair!");
                         Console.Write("Please enter the Inventory id which you want to delete : ");
                         rId = int.Parse(Console.ReadLine());
                         operationResult = DeleteRepair(rId);
@@ -365,6 +374,7 @@ namespace CarRepairManagementSystem
             MenuForRepair();
         }
 
+        //method to quit program
         static void ExitProgram()
         {
             System.Environment.Exit(0);
@@ -394,6 +404,7 @@ namespace CarRepairManagementSystem
 
         }
 
+        //method to add new Vehicle in the collection
         static bool AddNewVehicle()
         {
             bool result = true;
@@ -401,6 +412,8 @@ namespace CarRepairManagementSystem
             {
                 Console.Write("Enter the Vehicle Id : ");
                 int vId = int.Parse(Console.ReadLine());
+
+                //calls method to check the new vehicle id is unique or not
                 bool status = CheckVehicleId(vId);
                 if (status)
                 {
@@ -453,6 +466,7 @@ namespace CarRepairManagementSystem
             return result;
         }
 
+        //method to update vehicle information
         static bool UpdateVehicle(int id)
         {
 
@@ -505,6 +519,7 @@ namespace CarRepairManagementSystem
             return result;
         }
 
+        //method to check the vehicle id exist or not
         static bool CheckVehicleId(int id)
         {
             bool result = false;
@@ -534,6 +549,7 @@ namespace CarRepairManagementSystem
             return result;
         }
 
+        //method to delete vehicle object from collection
         static bool DeleteVehicle(int id)
         {
             bool result = false;
@@ -556,7 +572,8 @@ namespace CarRepairManagementSystem
 
 
         /*###########################################################*/
-        //Methods to handle Inventory class
+        /*Methods to handle Inventory class*/
+        //method to display all inventory objects
         static void DisplayListAllInventories()
         {
             //Console.WriteLine("List of all vehicles....");
@@ -579,6 +596,8 @@ namespace CarRepairManagementSystem
             Console.Write("Press any key to continue. ");
 
         }
+        
+        //method to add new Inventory item in collection
         static bool AddNewInventory()
         {
             bool result = true;
@@ -587,6 +606,8 @@ namespace CarRepairManagementSystem
             {
                 Console.Write("Enter the Inventory Id : ");
                 int iId = int.Parse(Console.ReadLine());
+
+                //calls method to check inventory id already exists or not
                 status = CheckInventoryId(iId);
                 if (!status)
                 {
@@ -629,6 +650,7 @@ namespace CarRepairManagementSystem
             return result;
         }
 
+        //method to update inventory data
         static bool UpdateInventory(int id)
         {
 
@@ -672,6 +694,8 @@ namespace CarRepairManagementSystem
 
             return result;
         }
+
+        //method to delete inventory item from collection
         static bool DeleteInventory(int id)
         {
             bool result = false;
@@ -691,6 +715,7 @@ namespace CarRepairManagementSystem
             return result;
         }
 
+        //method to check the inventory id exists or not
         static bool CheckInventoryId(int id)
         {
             bool result = false;
@@ -724,7 +749,9 @@ namespace CarRepairManagementSystem
 
         }
         /*###########################################################*/
-        //All methods related to Repail class
+        /*All methods related to Repail class*/
+        
+        //method to display all repairs data
         static void DisplayListAllRepairs()
         {
             //Console.WriteLine("List of all vehicles....");
@@ -748,6 +775,7 @@ namespace CarRepairManagementSystem
 
         }
 
+        //method to add new Repair item to collection
         static bool AddNewRepair()
         {
             bool result = false;
@@ -756,6 +784,8 @@ namespace CarRepairManagementSystem
             {
                 Console.Write("Enter the Repair Id : ");
                 int rId = int.Parse(Console.ReadLine());
+
+                //calls method to check repairid exists or not
                 status = CheckRepairId(rId);
                 if (status)
                 {
@@ -793,6 +823,7 @@ namespace CarRepairManagementSystem
             return result;
         }
 
+        //method to update the repair data
         static bool UpdateRepair(int id)
         {
             bool result = false;
@@ -828,6 +859,7 @@ namespace CarRepairManagementSystem
             return result;
         }
 
+        //method to delete the rapair item from collection
         static bool DeleteRepair(int id)
         {
             bool result = false;
@@ -877,6 +909,8 @@ namespace CarRepairManagementSystem
             return result;
 
         }
+
+        //method to load the initial vehicle data
         static void LoadInitialVehicleData()
         {
             //Add records to vehicles list
@@ -887,6 +921,7 @@ namespace CarRepairManagementSystem
             vehicleList.Add(new Vehicle("5", "Hundai", "Series-99", 2020, VehicleStatus.New));
         }
 
+        //method to load the initial inventory data
         static void LoadInitialInventoryData()
         {
             inventoryList.Add(new Inventory("101", "1", 1, 26999, 24999));
@@ -896,6 +931,7 @@ namespace CarRepairManagementSystem
             inventoryList.Add(new Inventory("105", "5", 1, 26999, 24999));
         }
 
+        //method to load initial repair data
         static void LoadInitialRepairData()
         {
             repairList.Add(new Repair("1001", "101", "None"));
